@@ -167,8 +167,7 @@ Jakich nie ma:
   ```
 - running one test: `test.only`  
   Jeśli pracujesz nad nowym testem i nie chcesz uruchamiać pełenj suity dodat `test.only` przy danym teście, przy egzekucji zostaną odpalone tylko te testy np. `test.only('login test', async ({ page }) => {});`  
-   `     TIP: Pamiętaj o usunięciu tej opcji po testach danego testu 😀
-  `
+   `    TIP: Pamiętaj o usunięciu tej opcji po testach danego testu 😀`
 - jeśli zależy Ci na zgubieniu focus-u z danego elementu, użyj funkcji `blur()` przykład:
 
   ```javascript

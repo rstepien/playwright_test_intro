@@ -97,6 +97,16 @@ if link is broken check https://jaktestowac.pl/lesson/pw1s01l01/
 - view report  
 `npx playwright show-report`
 
+### Updating Playwright
+- check if Playwright should be updated  
+`npm outdated @playwright/test` 
+- update Playwright  
+`npm i @playwright/test`
+- update browsers  
+`npx playwright install`
+- verify Playwright version  
+`npx @playwright/test --version`
+
 ## Playwright Config modifications
 - config file `playwright.config.ts`
 - disable browsers, i.e. Firefox  
@@ -109,10 +119,22 @@ if link is broken check https://jaktestowac.pl/lesson/pw1s01l01/
     // },
     ```
 ## Visual Studio Code
+### Functions
 - Preview: for README.md
 - Autosave: in File -> Auto Save
 - Timeline: file context menu -> Open Timeline
 - Formatting: editor -> context menu -> Format Document
+- Searching: editor -> <kbd>CTRL</kbd> + <kbd>F</kbd>
+- Accept hint in editor: <kbd>Enter</kbd>
+- Comment/Uncomment: <kbd>Ctrl</kbd> + <kbd>/</kbd>
+- Duplicate line: <kbd>Alt</kbd> + <kbd>Shift</kbd> + <kbd>↑</kbd>
+- Use more than one terminal: <kbd>+</kbd> button in TERMINAL
+- Extract to variable: <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>R</kbd>
+- Move line i.e. up: <kbd>Alt</kbd> + <kbd>↑</kbd>
+- Creating a new variable: Refactor <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>R</kbd> -> Extract to constant in enclosing scope
+
+### Plugins
+- GitLens - view details of your repository i.e. commits history
 
 ## Playwright snippets & tips
 - test:
@@ -121,8 +143,7 @@ if link is broken check https://jaktestowac.pl/lesson/pw1s01l01/
     
     });
     ```
-- describe: grupownie testów w logiczną całość za pomocą `test.describe` pomaga poprawić czytelność testów z tego samego obszaru
-:
+- describe: grupownie testów w logiczną całość za pomocą `test.describe` pomaga poprawić czytelność testów z tego samego obszaru:
     ```javascript
      describe('Group description', () => {
         test 1 

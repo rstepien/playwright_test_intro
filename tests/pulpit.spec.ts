@@ -1,23 +1,23 @@
 import { test, expect } from '@playwright/test';
 
 test.describe('Pulpit Demobank tests ', () => {
-  test('quick payment with correct data', async ({ page }) => {
-    // Arrange
-    const base_url = 'https://demo-bank.vercel.app';
+  test.beforeEach(async ({ page }) => {
     const userId = 'testerLO';
     const userPassword = '87iokjhn';
-
+    
+    await page.goto('/');
+    await page.getByTestId('login-input').fill(userId);
+    await page.getByTestId('password-input').fill(userPassword);
+    await page.getByTestId('login-button').click();
+  });
+  test('quick payment with correct data', async ({ page }) => {
+    // Arrange
     const receiverId = '2';
     const transferAmount = '150';
     const transferTitle = 'pizza';
     const expectedTransferReceiver = 'Chuck Demobankowy';
 
     // Act
-    await page.goto(base_url);
-    await page.getByTestId('login-input').fill(userId);
-    await page.getByTestId('password-input').fill(userPassword);
-    await page.getByTestId('login-button').click();
-
     await page.locator('#widget_1_transfer_receiver').selectOption(receiverId);
     await page.locator('#widget_1_transfer_amount').fill(transferAmount);
     await page.locator('#widget_1_transfer_title').fill(transferTitle);
@@ -33,21 +33,12 @@ test.describe('Pulpit Demobank tests ', () => {
   });
   test('quick payment with incorrect data', async ({ page }) => {
     // Arrange
-    const base_url = 'https://demo-bank.vercel.app';
-    const userId = 'testerLO';
-    const userPassword = '87iokjhn';
-
     const receiverId = '2';
     const transferAmount = '150';
     const transferTitle = 'pizza';
     const expectedTransferReceiver = 'Chuck Demobankowy';
 
     // Act
-    await page.goto(base_url);
-    await page.getByTestId('login-input').fill(userId);
-    await page.getByTestId('password-input').fill(userPassword);
-    await page.getByTestId('login-button').click();
-
     await page.locator('#widget_1_transfer_receiver').selectOption(receiverId);
     await page.locator('#widget_1_transfer_amount').fill(transferAmount);
     await page.locator('#widget_1_transfer_title').fill(transferTitle);
@@ -62,19 +53,10 @@ test.describe('Pulpit Demobank tests ', () => {
   });
   test('successful mobile topup with fill amount', async ({ page }) => {
     // Arrange
-    const base_url = 'https://demo-bank.vercel.app';
-    const userId = 'testerLO';
-    const userPassword = '87iokjhn';
-
     const receiverNumber = '503 xxx xxx';
     const transferAmount = '50';
 
     // Act
-    await page.goto(base_url);
-    await page.getByTestId('login-input').fill(userId);
-    await page.getByTestId('password-input').fill(userPassword);
-    await page.getByTestId('login-button').click();
-
     await page.locator('#widget_1_topup_receiver').selectOption(receiverNumber);
     await page.locator('#widget_1_topup_amount').fill(transferAmount);
     await page.locator('#uniform-widget_1_topup_agreement span').click();
@@ -87,11 +69,6 @@ test.describe('Pulpit Demobank tests ', () => {
     );
   });
   test.skip('successful mobile topup with select amount', async ({ page }) => {
-    await page.goto('https://demo-bank.vercel.app');
-    await page.getByTestId('login-input').fill('testerLO');
-    await page.getByTestId('password-input').fill('87iokjhn');
-    await page.getByTestId('login-button').click();
-
     await page.locator('#widget_1_topup_receiver').selectOption('504 xxx xxx');
     await page.locator('#widget_1_topup_amount').selectOption('100');
     await page.locator('#uniform-widget_1_topup_agreement span').click();

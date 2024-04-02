@@ -532,6 +532,23 @@ By doing so, we can save time and effort since we don't have to write the same c
 
 `beforeEach()` is used to perform certain actions before tests, such as data preparation, logging, environment setup, etc. This helps us avoid duplicating code in every test function.
 
+## POM
+
+### Page Object Model (POM)
+
+The Page Object Model (POM) is a design pattern used in test automation. The pattern focuses on separating the logic responsible for interacting with web pages into separate modules, which are then used in tests.
+
+POM is based on representing the structure of the tested web page in the form of classes/objects. Such an object then contains methods that represent the actions a user can perform on the page.
+
+The Page Object Model helps to separate test logic from implementation details. Thus, when the application undergoes changes, such as a change in the structure of elements on the page, there is no need to modify the test code, only the appropriate Page Object objects.
+
+By using the Page Object Model, automated tests can be written easily and clearly, making them more resistant to changes in the application and easier to maintain.
+
+### Links
+
+Official documentation - https://playwright.dev/docs/pom  
+Martin Fowler article - https://martinfowler.com/bliki/PageObject.html
+
 ## Simple Page Object Model
 
 Simple implementation of Page Object Model can be based on _classes_ that represents and implements tested pages.

@@ -1,4 +1,4 @@
 export const loginData = {
-  userId: 'testerLO',
-  userPassword: '87iokjhn',
+  userId: 'your_login_id',
+  userPassword: 'your_password',
 };

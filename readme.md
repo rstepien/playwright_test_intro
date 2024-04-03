@@ -1,5 +1,8 @@
 # BASICS OF PLAYWRIGHT FRAMEWORK
 
+This project is a practical introduction to testing in the Playwright framework.  
+`Readme` is mainly a compilation of study notes, useful links and good practical
+
 ## What is Playwright?
 
 End-to-end automated testing tool  

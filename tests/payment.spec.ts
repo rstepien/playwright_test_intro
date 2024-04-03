@@ -13,7 +13,7 @@ test.describe('Payment Demobank tests ', () => {
     await page.goto('/');
 
     const loginPage = new LoginPage(page);
-    
+
     await loginPage.login(userId, userPassword);
 
     paymentPage = new PaymentPage(page);
@@ -29,11 +29,11 @@ test.describe('Payment Demobank tests ', () => {
     const expectedMessage = `Przelew wykonany! ${transferAmount},00PLN dla Jan Nowak`;
 
     // Act
-    await paymentPage.transferReceiverInput.fill(transferReceiver);
-    await paymentPage.transferToInput.fill(transferAccount);
-    await paymentPage.transferAmountInput.fill(transferAmount);
-    await paymentPage.transferButton.click();
-    await paymentPage.transferPopupButton.click();
+    await paymentPage.makeTransfer(
+      transferReceiver,
+      transferAccount,
+      transferAmount,
+    );
 
     // Assert
     await expect(paymentPage.confirmationMessage).toHaveText(expectedMessage);

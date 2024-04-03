@@ -608,6 +608,63 @@ const loginPage = new LoginPage(page);
 await loginPage.login(userId, userPassword);
 ```
 
+## Page Object Model with Action Aggregation
+
+The Page Object Model with Action Aggregation is a class that represents a specific web page. However, in this class, we have:
+
+- Locators pointing to elements (buttons, text fields, etc.) with which we interact during tests,
+- Methods that are aggregated actions on individual elements.
+
+By aggregating actions into methods, we do not need to refer to individual page elements in tests.
+
+Here's an example content of the login.spec.ts file, where we use the new implementation of the POM pattern in the successful login test with correct credentials:
+
+```js
+test.describe('User login to Demobank', () => {
+  let loginPage: LoginPage; // <=  This declares a variable loginPage of type LoginPage, which will be used to interact with calls from the testcases below.
+
+  test.beforeEach(async ({ page }) => {
+    await page.goto('/');
+    loginPage = new LoginPage(page); // <=nitializes the loginPage variable with a new instance of LoginPage using the current page
+  });
+  test('successful login with correct credentials', async ({ page }) => {
+    // Arrange
+    const userId = loginData.userId;
+    const userPassword = loginData.userPassword;
+    const expectedUserName = 'Jan Demobankowy';
+
+    // Act
+    await loginPage.login(userId, userPassword); // <= This calls the login method from login.page.ts to perform a login action.
+
+    // Assert
+    const pulpitPage = new PulpitPage(page);
+    await expect(pulpitPage.userNameText).toHaveText(expectedUserName);
+  });
+```
+
+Content of `login.page.ts`:
+
+```js
+async login(userId: string, userPassword: string): Promise<void> {
+  await this.loginInput.fill(userId);
+  await this.passwordInput.fill(userPassword);
+  await this.loginButton.click();
+```
+
+### Advantages:
+
+- **Reduction of code duplication in tests** – selectors, locators, and actions on locators are in one place (in the page class).
+- **Even better maintainability** – when there is a change on the page (both in the element and in the order of actions), we only need to update the page class, and the tests remain unchanged.
+- **Aggregation of page data** – gathering all page elements with which we interact in one place.
+- **Responsibility for the order of actions is in the code** – the person writing new tests does not need to remember which elements should be used in what order on a given page, e.g., first enter the login, then the password, and finally press the login button.
+- **Relatively fast implementation**.
+- **Suitable for both smaller, simpler tests/projects, and also for medium-sized ones**.
+
+### Disadvantages:
+
+- **Requires better programming knowledge** – introducing methods aggregating actions may raise the complexity level of the code.
+- **Certain limitations** – the created method should have a single responsibility (adhering to programming principles such as SOLID), i.e., it should be responsible for a specific comprehensive action. When we have correct login and incorrect login, we cannot use the same method because the atomic actions will not match.
+
 ## Mocking API
 
 ### Link

@@ -249,11 +249,11 @@ To quickly evaluate code use `DEBUG CONSOLE`.
   await page.waitForLoadState('domcontentloaded');
   ```
 
-## lokatory
+## locators
 
-`Lokator`: is how we find a particular element from a web page.
+`Locator`: is how we find a particular element from a web page.
 
-`Selektor`: is the address of the element.
+`Selector`: is the address of the element.
 
 - The `getByTestId()` locator acts on the value of the attribute located in the code of the data-testid page.
 
@@ -330,7 +330,7 @@ To quickly evaluate code use `DEBUG CONSOLE`.
 
 ---
 
-## Selektory
+## Selectors
 
 We can locate elements on a page using selectors:
 
@@ -604,3 +604,9 @@ Then use page in tests:
 const loginPage = new LoginPage(page);
 await loginPage.login(userId, userPassword);
 ```
+
+## Mocking API
+
+### Link
+
+API Mocking in Playwright - https://anandhik.medium.com/api-mocking-in-playwright-9ac0cfcd0c1e

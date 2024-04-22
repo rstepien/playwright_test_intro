@@ -665,8 +665,28 @@ async login(userId: string, userPassword: string): Promise<void> {
 - **Requires better programming knowledge** – introducing methods aggregating actions may raise the complexity level of the code.
 - **Certain limitations** – the created method should have a single responsibility (adhering to programming principles such as SOLID), i.e., it should be responsible for a specific comprehensive action. When we have correct login and incorrect login, we cannot use the same method because the atomic actions will not match.
 
-## Mocking API
+## REST API testing in Playwright 
 
-### Link
+### Available tools
+
+For testing REST API in JavaScript/TypeScript, you can use:  
+* Supertest - 🔗 https://www.npmjs.com/package/supertest 
+* Playwright - 🔗 https://playwright.dev/docs/api-testing 
+
+Other, less popular libraries for communicating with REST API:  
+* PactumJS - 🔗 https://pactumjs.github.io/introduction/welcome.html (gaining popularity quickly)  
+* Frisby.js - 🔗 https://github.com/vlucas/frisby  
+* chakram - 🔗 https://github.com/dareid/chakram 
+
+For testing REST API + UI in JS/TS, you can use:
+pure Playwright
+combination e.g., Playwright + Supertest or Playwright + PactumJS"
+
+### Official Documentation
+https://playwright.dev/docs/api-testing
+
+### Mocking API
+
+#### Link
 
 API Mocking in Playwright - https://anandhik.medium.com/api-mocking-in-playwright-9ac0cfcd0c1e

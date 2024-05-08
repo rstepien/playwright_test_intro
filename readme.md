@@ -665,6 +665,35 @@ async login(userId: string, userPassword: string): Promise<void> {
 - **Requires better programming knowledge** – introducing methods aggregating actions may raise the complexity level of the code.
 - **Certain limitations** – the created method should have a single responsibility (adhering to programming principles such as SOLID), i.e., it should be responsible for a specific comprehensive action. When we have correct login and incorrect login, we cannot use the same method because the atomic actions will not match.
 
+## Tags
+
+documentation: https://playwright.dev/docs/test-cli#reference
+
+Tags in Playwright are used for test categorization, allowing easy filtering and management of tests based on specific criteria. Tags can be added to individual tests or test groups during their declaration.
+
+There are two ways to add tags to tests: 
+- The first method involves adding '@' followed by a string of characters (without spaces) in the test title.
+- The second method involves adding a special object with tag configuration (called TestDetails).
+
+### Examples of test execution
+
+- Running tests that **contain** the string '@login' in their name:
+
+```bash
+npx playwright test --grep "@login"
+```
+
+This command will execute tests using Playwright test runner and filter them based on the presence of '@login' in their name. Only tests whose name includes the '@login' string will be executed.
+
+- To run tests that do **not contain** the string '@login' in their name, you can use the `--grep-invert` option with Playwright test runner. Here's the command:
+
+```bash
+npx playwright test --grep-invert "@login"
+```
+
+This command will execute tests using Playwright test runner and exclude tests whose names include the '@login' string. Only tests whose names do not contain '@login' will be executed.
+
+
 ## REST API testing in Playwright 
 
 ### Available tools

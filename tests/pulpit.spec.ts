@@ -17,7 +17,7 @@ test.describe('Pulpit Demobank tests ', () => {
 
     pulpitPage = new PulpitPage(page);
   });
-  test('quick payment with correct data', async ({ page }) => {
+  test('quick payment with correct data @pulpit @smoke', async ({ page }) => {
     // Arrange
     const receiverId = '2';
     const transferAmount = '150';
@@ -36,7 +36,7 @@ test.describe('Pulpit Demobank tests ', () => {
       `Przelew wykonany! ${expectedTransferReceiver} - ${transferAmount},00PLN - ${transferTitle}`,
     );
   });
-  test('quick payment with incorrect data', async ({ page }) => {
+  test('quick payment with incorrect data @pulpit', async ({ page }) => {
     // Arrange
     const receiverId = '2';
     const transferAmount = '150';
@@ -55,7 +55,7 @@ test.describe('Pulpit Demobank tests ', () => {
       `Przelew wykonany! ${expectedTransferReceiver} - ${transferAmount},00PLN - ${transferTitle}`,
     );
   });
-  test('successful mobile topup with fill amount', async ({ page }) => {
+  test('successful mobile topup with fill amount @pulpit', async ({ page }) => {
     // Arrange
     const receiverNumber = '503 xxx xxx';
     const transferAmount = '50';
@@ -68,7 +68,7 @@ test.describe('Pulpit Demobank tests ', () => {
       `Doładowanie wykonane! ${transferAmount},00PLN na numer ${receiverNumber}`,
     );
   });
-  test('correct balance after successful mobile topup with fill amount', async ({
+  test('correct balance after successful mobile topup with fill amount @pulpit', async ({
     page,
   }) => {
     // Arrange

@@ -21,7 +21,7 @@ test.describe('Payment Demobank tests ', () => {
     await paymentPage.sideMenu.paymentButton.click();
   });
 
-  test('simple payment', async ({ page }) => {
+  test('simple payment @payment @smoke', async ({ page }) => {
     // Arrange
     const transferReceiver = 'Jan Nowak';
     const transferAccount = '12 3456 7890 1234 5678 9012 3456';

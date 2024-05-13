@@ -17,70 +17,84 @@ test.describe('Pulpit Demobank tests ', () => {
 
     pulpitPage = new PulpitPage(page);
   });
-  test('quick payment with correct data @pulpit @smoke', async ({ page }) => {
-    // Arrange
-    const receiverId = '2';
-    const transferAmount = '150';
-    const transferTitle = 'pizza';
-    const expectedTransferReceiver = 'Chuck Demobankowy';
+  test(
+    'quick payment with correct data',
+    { tag: ['@pulpit', '@smoke'] },
+    async ({ page }) => {
+      // Arrange
+      const receiverId = '2';
+      const transferAmount = '150';
+      const transferTitle = 'pizza';
+      const expectedTransferReceiver = 'Chuck Demobankowy';
 
-    // Act
-    await pulpitPage.executeQuickPayment(
-      receiverId,
-      transferAmount,
-      transferTitle,
-    );
+      // Act
+      await pulpitPage.executeQuickPayment(
+        receiverId,
+        transferAmount,
+        transferTitle,
+      );
 
-    // Assert
-    await expect(page.locator('#show_messages')).toHaveText(
-      `Przelew wykonany! ${expectedTransferReceiver} - ${transferAmount},00PLN - ${transferTitle}`,
-    );
-  });
-  test('quick payment with incorrect data @pulpit', async ({ page }) => {
-    // Arrange
-    const receiverId = '2';
-    const transferAmount = '150';
-    const transferTitle = 'pizza';
-    const expectedTransferReceiver = 'Chuck Demobankowy';
+      // Assert
+      await expect(page.locator('#show_messages')).toHaveText(
+        `Przelew wykonany! ${expectedTransferReceiver} - ${transferAmount},00PLN - ${transferTitle}`,
+      );
+    },
+  );
+  test(
+    'quick payment with incorrect data',
+    { tag: '@pulpit' },
+    async ({ page }) => {
+      // Arrange
+      const receiverId = '2';
+      const transferAmount = '150';
+      const transferTitle = 'pizza';
+      const expectedTransferReceiver = 'Chuck Demobankowy';
 
-    // Act
-    await pulpitPage.executeQuickPayment(
-      receiverId,
-      transferAmount,
-      transferTitle,
-    );
+      // Act
+      await pulpitPage.executeQuickPayment(
+        receiverId,
+        transferAmount,
+        transferTitle,
+      );
 
-    // Assert
-    await expect(pulpitPage.confirmationMessage).toHaveText(
-      `Przelew wykonany! ${expectedTransferReceiver} - ${transferAmount},00PLN - ${transferTitle}`,
-    );
-  });
-  test('successful mobile topup with fill amount @pulpit', async ({ page }) => {
-    // Arrange
-    const receiverNumber = '503 xxx xxx';
-    const transferAmount = '50';
+      // Assert
+      await expect(pulpitPage.confirmationMessage).toHaveText(
+        `Przelew wykonany! ${expectedTransferReceiver} - ${transferAmount},00PLN - ${transferTitle}`,
+      );
+    },
+  );
+  test(
+    'successful mobile topup with fill amount',
+    { tag: '@pulpit' },
+    async ({ page }) => {
+      // Arrange
+      const receiverNumber = '503 xxx xxx';
+      const transferAmount = '50';
 
-    // Act
-    await pulpitPage.executeMobileTopUp(receiverNumber, transferAmount);
+      // Act
+      await pulpitPage.executeMobileTopUp(receiverNumber, transferAmount);
 
-    // Assert
-    await expect(pulpitPage.confirmationMessage).toHaveText(
-      `Doładowanie wykonane! ${transferAmount},00PLN na numer ${receiverNumber}`,
-    );
-  });
-  test('correct balance after successful mobile topup with fill amount @pulpit', async ({
-    page,
-  }) => {
-    // Arrange
-    const receiverNumber = '503 xxx xxx';
-    const transferAmount = '50';
-    const initialBalance = await pulpitPage.moneyValueText.innerText();
-    const expectedBalance = Number(initialBalance) - Number(transferAmount);
+      // Assert
+      await expect(pulpitPage.confirmationMessage).toHaveText(
+        `Doładowanie wykonane! ${transferAmount},00PLN na numer ${receiverNumber}`,
+      );
+    },
+  );
+  test(
+    'correct balance after successful mobile topup with fill amount',
+    { tag: '@pulpit' },
+    async ({ page }) => {
+      // Arrange
+      const receiverNumber = '503 xxx xxx';
+      const transferAmount = '50';
+      const initialBalance = await pulpitPage.moneyValueText.innerText();
+      const expectedBalance = Number(initialBalance) - Number(transferAmount);
 
-    // Act
-    await pulpitPage.executeMobileTopUp(receiverNumber, transferAmount);
+      // Act
+      await pulpitPage.executeMobileTopUp(receiverNumber, transferAmount);
 
-    // Assert
-    await expect(pulpitPage.moneyValueText).toHaveText(`${expectedBalance}`);
-  });
+      // Assert
+      await expect(pulpitPage.moneyValueText).toHaveText(`${expectedBalance}`);
+    },
+  );
 });

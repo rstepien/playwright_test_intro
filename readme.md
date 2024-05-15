@@ -675,6 +675,14 @@ There are two ways to add tags to tests:
 - The first method involves adding '@' followed by a string of characters (without spaces) in the test title.
 - The second method involves adding a special object with tag configuration (called TestDetails).
 
+## Annotations
+
+documentation: https://playwright.dev/docs/test-annotations
+
+Annotations are special markers that we add to tests. You can think of annotations as notes or instructions attached to the code. These annotations do not directly affect the way our code works. However, they are very useful for organising and improving the readability of our code and tests.
+
+Annotations in Playwright are special markers that you add to your tests. You can use annotations to mark tests as skipped, failed, too slow, or to focus on a particular test. Annotations can also contain additional information, such as links to specific issues (via URL) or categories.
+
 ### Examples of test execution
 
 - Running tests that **contain** the string '@login' in their name:
